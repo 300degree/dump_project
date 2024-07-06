@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+package auth;
+option go_package = "./pkg/proto/pb";
+
+service AuthService {
+  rpc SignUp (SignUpRequest) returns (SignUpResponse);
+  rpc SignIn (SignInRequest) returns (SignInResponse);
+  rpc Validate (ValidateRequest) returns (ValidateResponse);
+}
+
+/* Request */
+message SignUpRequest {
+  string email = 1;
+  string username = 2;
+  string password = 3;
+}
+
+message SignInRequest {
+  string username = 1;
+  string password = 2;
+}
+
+message ValidateRequest {
+  string token = 1;
+}
+
+/* Response */
+message SignUpResponse {
+  int32 status = 1;
+  string error = 2;
+  string body = 3;
+}
+
+message SignInResponse {
+  int32 status = 1;
+  string error = 2;
+  string token = 3;
+}
+
+message ValidateResponse {
+  int32 status = 1;
+  string error = 2;
+}
+
